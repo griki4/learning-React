@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+
+<!--引入React相关的资源-->
+<script src="../lib/react.js"></script>
+<script src="../lib/react-dom.js"></script>
+<!--引入babel转译jsx语法-->
+<script src="../lib/babel.js"></script>
+
+
+<script type="text/babel">
+    let message = 'Hello World'
+    function click(){
+        message = 'Hello React'
+        //手动重新渲染，和Vue的响应式有较大区别
+        renderRoot()
+    }
+    //根元素
+    const root = ReactDOM.createRoot(document.querySelector("#root"))
+    function renderRoot(){
+        //渲染函数
+        root.render((
+            <div>
+                <h2>{message}</h2>
+                <button onClick={click}>点击修改文本</button>
+            </div>
+        ))
+    }
+    renderRoot()
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+<!--引入React相关的资源-->
+<script src="../lib/react.js"></script>
+<script src="../lib/react-dom.js"></script>
+<!--引入babel转译jsx语法-->
+<script src="../lib/babel.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        constructor() {
+            super()
+            this.state = {
+                message: 'Hello React',
+                title: 'hhhh',
+                imgURL: 'https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/…75~tplv-k3u1fbpfcp-no-mark:240:240:240:160.awebp?'
+            }
+        }
+        render(){
+            const { message, title, imgURL } = this.state
+            return (
+                <div>
+                    {/*1. 绑定全局属性*/}
+                    <h2 title={title}>{message}</h2>
+                    <img src={imgURL} alt=""/>
+
+                    {/*2. 绑定class属性
+                            避免和保留字冲突，推荐使用className
+                         2.1 使用模板字符串*/}
+
+                    {/*3 绑定style属性，绑定对象类型*/}
+                    <h2 style={{color: "red", fontSize: "30px"}}>呵呵哈哈哈</h2>
+                </div>
+            )
+        }
+    }
+    //渲染根组件
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<App/>)
+</script>
+</body>
+</html>

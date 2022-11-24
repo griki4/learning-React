@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+
+<!--引入React相关的资源-->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<!--引入babel转译jsx语法-->
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+<script type="text/babel">
+    let message = 'Hello World'
+    function click(){
+        message = 'Hello React'
+        //手动重新渲染，和Vue的响应式有较大区别
+        renderRoot()
+    }
+    const root = ReactDOM.createRoot(document.querySelector("#root"))
+    function renderRoot(){
+        root.render((
+            <div>
+                <h2>{message}</h2>
+                <button onClick={click}>点击修改文本</button>
+            </div>
+        ))
+    }
+    renderRoot()
+</script>
+</body>
+</html>
