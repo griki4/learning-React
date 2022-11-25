@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<!--引入React相关的资源-->
+<script src="../lib/react.js"></script>
+<script src="../lib/react-dom.js"></script>
+<!--引入babel转译jsx语法-->
+<script src="../lib/babel.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        constructor() {
+            super()
+            this.state = {
+                message: 'Hello React',
+                movies: [1, 2, 3, 4, 5],
+                currentIndex: 0
+            }
+        }
+        render(){
+            const { message, movies, currentIndex } = this.state
+            return (
+                <div>
+                    <h2>{message}</h2>
+                    <ul>
+                        {
+                            movies.map((movie, index) => {
+                                return (
+                                    <li
+                                        className={ currentIndex === index ? 'active' : ''}
+                                        onClick={() => this.click(index)}
+                                    >
+                                        {movie}
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+            )
+        }
+        click(index){
+            this.setState({currentIndex: index})
+        }
+    }
+    //渲染根组件
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<App/>)
+</script>
+</body>
+</html>

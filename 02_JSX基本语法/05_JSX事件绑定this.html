@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+<!--引入React相关的资源-->
+<script src="../lib/react.js"></script>
+<script src="../lib/react-dom.js"></script>
+<!--引入babel转译jsx语法-->
+<script src="../lib/babel.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        constructor() {
+            super()
+            this.state = {
+                message: 'Hello React',
+                counter: 100
+            }
+            this.click = this.click.bind(this)
+        }
+        render(){
+            const { message, counter } = this.state
+            return (
+                <div>
+                    <h2>{message}</h2>
+                    <h2>{counter}</h2>
+                    {/*1. bind绑定this*/}
+                    <button onClick={this.click}>+1</button>
+
+                    {/*2. ES6的class fields绑定*/}
+                    <button onClick={this.click2}>赋值为1000</button>
+
+                    {/*3. 直接传入箭头函数(比较推荐的写法)*/}
+                    <button onClick={() => this.click3()}>赋值为1</button>
+                </div>
+            )
+        }
+        click(){
+            this.setState({counter: this.state.counter + 1})
+        }
+        click2 = () => {
+            this.setState({counter: 1000})
+        }
+        click3(){
+            this.setState({counter: 1})
+        }
+    }
+    //渲染根组件
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<App/>)
+</script>
+</body>
+</html>

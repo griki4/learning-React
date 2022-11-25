@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+<!--引入React相关的资源-->
+<script src="../lib/react.js"></script>
+<script src="../lib/react-dom.js"></script>
+<!--引入babel转译jsx语法-->
+<script src="../lib/babel.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        constructor() {
+            super()
+            this.state = {
+                message: 'Hello React'
+            }
+        }
+        render(){
+            const { message } = this.state
+            return (
+                <div>
+                    <h2>{message}</h2>
+                    {/*1. event参数传递*/}
+                    <button onClick={this.click}>按钮1</button>
+                    <button onClick={(event) => this.click(event)}>按钮2</button>
+
+                    {/*2. 传递额外的参数*/}
+                    <button onClick={(event) => this.click(event, 'why', 20)}>按钮3</button>
+
+                </div>
+            )
+        }
+        click(event, name, age){
+            console.log(event, name, age)
+        }
+    }
+    //渲染根组件
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<App/>)
+</script>
+</body>
+</html>
